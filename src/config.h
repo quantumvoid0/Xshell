@@ -2,6 +2,6 @@
 
 
 struct xsh_config {
-    int verbose;
+    bool verbose;
     char *command;
 };

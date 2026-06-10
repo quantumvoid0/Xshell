@@ -3,11 +3,8 @@
 #include <stdio.h>
 
 #include "config.h"
+#include "src/xshell.h"
 
-static const char *const usages[] = {
-    PROJECT_NAME " [options]\n",
-    nullptr,
-};
 
 static int version_callback(struct argparse *argparse, const struct argparse_option *options);
 static int parse_arguments(int argc, char **argv, struct xsh_config *config);
@@ -16,18 +13,9 @@ static int parse_arguments(int argc, char **argv, struct xsh_config *config);
 int
 main(int argc, char **argv)
 {
-    struct xsh_config cfg;
-
-    argc = parse_arguments(argc, argv, &cfg);
-
-    /* The commands are passed in from the command line. */
-    if (argv[0] != nullptr)
-    {
-        /* Run commands, and then exit. */
-        return 0;
-    }
-
-    return 0;
+    struct xsh_config config;
+    argc = parse_arguments(argc, argv, &config);
+    return xshell_run(&config) ? 0 : 1;
 }
 
 
@@ -50,6 +38,11 @@ version_callback(struct argparse * /* unused */, const struct argparse_option * 
 int
 parse_arguments(int argc, char **argv, struct xsh_config *config)
 {
+    static const char *const usage[] = {
+        PROJECT_NAME " [options]\n",
+        nullptr,
+    };
+
     /* clang-format off */
     struct argparse_option options[] = {
 OPT_GROUP("General:"),
@@ -64,7 +57,7 @@ OPT_END()
 
     struct argparse argparse;
 
-    argparse_init(&argparse, options, usages, 0);
+    argparse_init(&argparse, options, usage, 0);
     argparse_describe(&argparse, "A terminal-centric command-line shell made in C23.", nullptr);
 
     return argparse_parse(&argparse, argc, (const char **)argv);
