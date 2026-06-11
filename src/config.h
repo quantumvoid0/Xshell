@@ -1,7 +1,7 @@
 #pragma once
 
 
-struct xsh_config {
+struct xshell_config {
     bool verbose;
     char *command;
 };

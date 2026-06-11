@@ -1,0 +1,1 @@
+struct_src = files('array.c')

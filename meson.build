@@ -7,7 +7,7 @@ project('xshell', 'c',
 
 subdir('src')
 compile_args = [ '-DPROJECT_NAME="@0@"'.format(meson.project_name()),
-                 '-DPROJECT_VERSION="@0@"'.format(meson.project_version()) ]
+                 '-DPROJECT_VERSION="@0@"'.format(meson.project_version()), ]
 dependencies = []
 
 cmake = import('cmake')

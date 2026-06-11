@@ -7,13 +7,13 @@
 
 
 static int version_callback(struct argparse *argparse, const struct argparse_option *options);
-static int parse_arguments(int argc, char **argv, struct xsh_config *config);
+static int parse_arguments(int argc, char **argv, struct xshell_config *config);
 
 
 int
 main(int argc, char **argv)
 {
-    struct xsh_config config;
+    struct xshell_config config;
     argc = parse_arguments(argc, argv, &config);
     return xshell_run(&config) ? 0 : 1;
 }
@@ -36,7 +36,7 @@ version_callback(struct argparse * /* unused */, const struct argparse_option * 
 
 
 int
-parse_arguments(int argc, char **argv, struct xsh_config *config)
+parse_arguments(int argc, char **argv, struct xshell_config *config)
 {
     static const char *const usage[] = {
         PROJECT_NAME " [options]\n",

@@ -2,7 +2,7 @@
 
 
 bool
-xshell_run(struct xsh_config *config)
+xshell_run(struct xshell_config *config)
 {
     return true;
 }

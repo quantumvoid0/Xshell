@@ -1,6 +1,6 @@
 #pragma once
 
-struct xsh_config;
+struct xshell_config;
 
 
-bool xshell_run(struct xsh_config *config);
+bool xshell_run(struct xshell_config *config);
